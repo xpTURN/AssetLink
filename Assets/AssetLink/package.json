@@ -1,0 +1,24 @@
+{
+  "name": "com.xpturn.assetlink",
+  "version": "1.0.0",
+  "displayName": "xpTURN.AssetLink",
+  "description": "This is an example package",
+  "unity": "2021.3",
+  "unityRelease": "45f1",
+  "documentationUrl": "https://github.com/xpTURN/AssetLink/README.md",
+  "changelogUrl": "https://github.com/xpTURN/AssetLink/CHANGELOG.md",
+  "licensesUrl": "https://github.com/xpTURN/AssetLink/LICENSE.md",
+  "dependencies": {
+    "com.unity.addressables": "2.6.0"
+  },
+  "keywords": [
+    "xpTURN",
+    "AssetLink",
+    "Addressables"
+  ],
+  "author": {
+    "name": "xpTURN",
+    "email": "xpturn@gmail.com",
+    "url": "https://github.com/xpTURN"
+  }
+}
