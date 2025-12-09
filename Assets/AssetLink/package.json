@@ -9,8 +9,7 @@
   "changelogUrl": "https://github.com/xpTURN/AssetLink/CHANGELOG.md",
   "licensesUrl": "https://github.com/xpTURN/AssetLink/LICENSE.md",
   "dependencies": {
-    "com.unity.addressables": "2.6.0",
-    "com.unity.cinemachine": "3.1.5"
+    "com.unity.addressables": "2.6.0"
   },
   "keywords": [
     "xpTURN",
