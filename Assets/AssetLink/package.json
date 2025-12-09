@@ -17,6 +17,13 @@
     "AssetLink",
     "Addressables"
   ],
+  "samples": [
+      {
+          "displayName": "Sample",
+          "description": "Contains sample code for the AssetLink library",
+          "path": "Samples~/"
+      }
+  ],
   "author": {
     "name": "xpTURN",
     "email": "xpturn@gmail.com",
