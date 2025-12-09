@@ -14,68 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
   m_GUID: 35fb7d86d386d434eb2ae6d47c050680
-  m_SerializeEntries:
-  - m_GUID: 035bf1ba97d19214580cfe6f5a29fdc3
-    m_Address: FirstPersonController/Prefabs/NestedParent_Unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 212907312655a4443a025a304442c17c
-    m_Address: ThirdPersonController/Prefabs/NestedParentCapsule_Unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2553cec8fdb3eb643bbe9f2ec880c472
-    m_Address: ThirdPersonController/Prefabs/PlayerCapsule.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2d3a85ecde41a8246a79669975912b74
-    m_Address: FirstPersonController/Prefabs/MainCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 64dce48905ffd9b4293e595fa6941544
-    m_Address: ThirdPersonController/Prefabs/PlayerArmature.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 707acc8dffb72b144bb1ffbe1c965f3d
-    m_Address: FirstPersonController/Playground.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9c489a8547f4d9e4387da15a4ff82c81
-    m_Address: FirstPersonController/Prefabs/PlayerFollowCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a1a802ecaf6775746bb2a929fb554ad8
-    m_Address: ThirdPersonController/Prefabs/PlayerFollowCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c5efc39a8aaf6e64ea40e9ad573e9b47
-    m_Address: FirstPersonController/Prefabs/PlayerCapsule.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c708a3b79cd542b42bbfedb17e213bc1
-    m_Address: ThirdPersonController/Prefabs/NestedParentArmature_Unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e9017d5f96b9f09489b4b37e1d6eb914
-    m_Address: ThirdPersonController/Playground.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f6d148d888ffbf54b9afe9936dfaec1f
-    m_Address: ThirdPersonController/Prefabs/MainCamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17d7ff8e8dcdf4578aec81e158a55748, type: 2}
   m_SchemaSet:
