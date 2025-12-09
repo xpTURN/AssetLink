@@ -21,7 +21,7 @@
       {
           "displayName": "Sample",
           "description": "Contains sample code for the AssetLink library",
-          "path": "Samples/"
+          "path": "Samples~/"
       }
   ],
   "author": {
