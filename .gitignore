@@ -1,1 +1,16 @@
 .DS_Store
+/.vscode
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+AssetLink.sln
+/Library
+/Logs
+/Temp
+Unity.StarterAssets.csproj
+Unity.StarterAssets.Editor.csproj
+URPWizard.csproj
+/UserSettings
+xpTURN.AssetLink.csproj
+xpTURN.AssetLink.Editor.csproj
+xpTURN.AssetLink.Editor.Tests.csproj
+xpTURN.AssetLink.Tests.csproj
