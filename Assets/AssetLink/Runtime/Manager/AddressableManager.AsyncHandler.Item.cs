@@ -132,6 +132,12 @@ namespace xpTURN.Link
                     _key = string.Empty;
                     _wrLink.SetTarget(null);
                     _wrCallback.SetTarget(null);
+                    _wrSceneCallback.SetTarget(null);
+                    _isInstantiate = false;
+                    _position = Vector3.zero;
+                    _rotation = Quaternion.identity;
+                    _hasParent = false;
+                    _worldSpace = true;
                     _wrParent.SetTarget(null);
                     _trace = null;
                 }
