@@ -12,6 +12,18 @@ namespace xpTURN.Link
 {
     public static class AddressableName
     {
+
+        public static void CreateSettings()
+        {
+            var settings = AddressableAssetSettingsDefaultObject.Settings;
+            if (settings != null)
+            {
+                return;
+            }
+
+            AddressableAssetSettings.Create("AddressableAssetsData", "AddressableAssetSettings", true, true);
+        }
+
         public static bool IsGroupExist(string groupName)
         {
             return AddressableAssetSettingsDefaultObject.Settings.FindGroup(groupName) != null;

@@ -61,6 +61,12 @@ namespace xpTURN.Editor
             string assetName = assetPath.Substring(assetPath.IndexOf(ADDRESSABLES_FOLDER) + ADDRESSABLES_FOLDER.Length);
             Debug.Log($"assetName: {assetName}");
 
+            // Create settings if not exist
+            if (AddressableAssetSettingsDefaultObject.Settings == null)
+            {
+                AddressableName.CreateSettings();
+            }
+
             // Create group if not exist
             if (AddressableName.IsGroupExist(groupName) == false)
             {
