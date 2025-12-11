@@ -12,16 +12,44 @@ namespace xpTURN.Link
 {
     public static class AddressableName
     {
-
-        public static void CreateSettings()
+        private const string CONFIG_FOLDER = "Assets/AddressableAssetsData";
+        private const string CONFIG_NAME = "AddressableAssetSettings";
+    
+        public static AddressableAssetSettings CreateOrGetSettings()
         {
+            // Check if settings already exist
             var settings = AddressableAssetSettingsDefaultObject.Settings;
             if (settings != null)
             {
-                return;
+                Debug.Log("[Addressables] Settings already exist.");
+                return settings;
             }
 
-            AddressableAssetSettings.Create("AddressableAssetsData", "AddressableAssetSettings", true, true);
+            // Create new settings
+            settings = AddressableAssetSettings.Create(
+                CONFIG_FOLDER,    // Assets/AddressableAssetsData
+                CONFIG_NAME,      // AddressableAssetSettings.asset
+                true,             // Create Default Group
+                true              // Save to disk
+            );
+
+            if (settings == null)
+            {
+                Debug.LogError("[Addressables] Failed to create settings!");
+                return null;
+            }
+
+            // Register as default settings in editor
+            AddressableAssetSettingsDefaultObject.Settings = settings;
+            
+            Debug.Log("[Addressables] Settings created successfully.");
+            return settings;
+        }
+
+        [MenuItem("Tools/Addressables/Create Settings")]
+        public static void CreateSettingsFromMenu()
+        {
+            CreateOrGetSettings();
         }
 
         public static bool IsGroupExist(string groupName)

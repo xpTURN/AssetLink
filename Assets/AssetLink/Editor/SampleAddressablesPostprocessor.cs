@@ -64,7 +64,7 @@ namespace xpTURN.Editor
             // Create settings if not exist
             if (AddressableAssetSettingsDefaultObject.Settings == null)
             {
-                AddressableName.CreateSettings();
+                AddressableName.CreateOrGetSettings();
             }
 
             // Create group if not exist
