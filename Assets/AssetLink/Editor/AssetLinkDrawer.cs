@@ -46,18 +46,26 @@ namespace xpTURN.Editor
                     {
                         _warningNotAddressableAsset = false;
 
-                        // 
+                        // Record undo
+                        Undo.RecordObject(targetObject, "Change AssetLink");
+
                         var key = AddressableKeyFinder.FindAddressableKeyFromPath(path);
                         assetLink?.AssignKey(key);
                         assetLink?.AssignAsset(asset);
+
+                        // Apply changes
+                        EditorUtility.SetDirty(targetObject);
+                        property.serializedObject.ApplyModifiedProperties();
                     }
                     else
                     {
                         Debug.LogWarning("[AssetLink] The selected asset is not addressable.");
                         _warningNotAddressableAsset = true;
 
-                        // 
+                        Undo.RecordObject(targetObject, "Reset AssetLink");
                         assetLink?.Reset();
+                        EditorUtility.SetDirty(targetObject);
+                        property.serializedObject.ApplyModifiedProperties();
                     }
                 }
             }
@@ -67,9 +75,14 @@ namespace xpTURN.Editor
             {
                 _warningNotAddressableAsset = false;
 
+                // Record undo
+                Undo.RecordObject(targetObject, "Reset AssetLink");
+
                 // Get the target object and call the Reset method
                 assetLink?.Reset();
 
+                // Apply changes
+                EditorUtility.SetDirty(targetObject);
                 property.serializedObject.ApplyModifiedProperties();
             }
 
