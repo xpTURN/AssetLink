@@ -15,7 +15,7 @@ namespace xpTURN.Editor
 {
     public class SampleAddressablesPostprocessor : AssetPostprocessor
     {
-        public const string ADDRESSABLES_FOLDER = "samples/addressables/";
+        public const string ADDRESSABLES_FOLDER = "sample/addressables/";
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         {
