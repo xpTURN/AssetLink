@@ -16,7 +16,7 @@ namespace xpTURN.Link.Editor.Tests
 {
     public class ObjectLinkTests
     {
-        private string _player_armature = "ThirdPersonController/Prefabs/PlayerArmature.prefab";
+        private string _player_armature = "thirdpersoncontroller/prefabs/playerarmature.prefab";
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
