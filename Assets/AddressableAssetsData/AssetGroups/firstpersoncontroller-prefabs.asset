@@ -13,31 +13,11 @@ MonoBehaviour:
   m_Name: firstpersoncontroller-prefabs
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: firstpersoncontroller-prefabs
-  m_GUID: 35ef88355b11848fbb9701cd87b44164
-  m_SerializeEntries:
-  - m_GUID: 035bf1ba97d19214580cfe6f5a29fdc3
-    m_Address: firstpersoncontroller/prefabs/nestedparent_unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2d3a85ecde41a8246a79669975912b74
-    m_Address: firstpersoncontroller/prefabs/maincamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9c489a8547f4d9e4387da15a4ff82c81
-    m_Address: firstpersoncontroller/prefabs/playerfollowcamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c5efc39a8aaf6e64ea40e9ad573e9b47
-    m_Address: firstpersoncontroller/prefabs/playercapsule.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: ecb1b880c1ffd4ebf9d4e77724113cd8
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17d7ff8e8dcdf4578aec81e158a55748, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 07f31842af41d481b956cc5766ecafc8, type: 2}
-    - {fileID: 11400000, guid: 25454149f9b334f3fa86b6b3495346f4, type: 2}
+    - {fileID: 11400000, guid: d63288a30dbb54281b083f094bcfde21, type: 2}
+    - {fileID: 11400000, guid: 7aec94e551b464e6d8523739cde64593, type: 2}

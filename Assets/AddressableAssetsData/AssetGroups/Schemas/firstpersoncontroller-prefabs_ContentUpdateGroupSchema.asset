@@ -11,6 +11,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
   m_Name: firstpersoncontroller-prefabs_ContentUpdateGroupSchema
-  m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: e93118c06e9d44df39380e069300abae, type: 2}
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.GroupSchemas.ContentUpdateGroupSchema
+  m_Group: {fileID: 11400000, guid: 80a1e38f18f8f46d2abf5ad8d57c6c26, type: 2}
   m_StaticContent: 0

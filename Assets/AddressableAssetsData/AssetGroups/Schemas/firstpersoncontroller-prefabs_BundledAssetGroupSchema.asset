@@ -11,8 +11,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d17a21594effb4e9591490b009e7aa, type: 3}
   m_Name: firstpersoncontroller-prefabs_BundledAssetGroupSchema
-  m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: e93118c06e9d44df39380e069300abae, type: 2}
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.GroupSchemas.BundledAssetGroupSchema
+  m_Group: {fileID: 11400000, guid: 80a1e38f18f8f46d2abf5ad8d57c6c26, type: 2}
   m_InternalBundleIdMode: 0
   m_Compression: 1
   m_IncludeAddressInCatalog: 1
@@ -35,9 +35,9 @@ MonoBehaviour:
   m_RedirectLimit: -1
   m_RetryCount: 0
   m_BuildPath:
-    m_Id: ab348219c421440678ca54d0e158314c
+    m_Id: 55f70509e5143488fa7d4d22e6d38a7d
   m_LoadPath:
-    m_Id: ee7cd46e9d39d46aa8701ad8bc8de3d1
+    m_Id: 4246cda4b554145f583a2455fe7b25e6
   m_BundleMode: 0
   m_AssetBundleProviderType:
     m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: scenes
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: scenes
-  m_GUID: 21bb0738b64e147029b7eb4dc1f0468c
-  m_SerializeEntries:
-  - m_GUID: 99645cb0e4c3843dbaad9853277858f6
-    m_Address: scenes/samplescene.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: 474a652f3a22d43dcbfa18dfbff47904
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17d7ff8e8dcdf4578aec81e158a55748, type: 2}
   m_SchemaSet:
-    m_Schemas: []
+    m_Schemas:
+    - {fileID: 11400000, guid: eb5de886d8e8b4483aa22ab0598df106, type: 2}
+    - {fileID: 11400000, guid: ce23e3e775bc944588f2ca2b60440b67, type: 2}

@@ -13,41 +13,11 @@ MonoBehaviour:
   m_Name: thirdpersoncontroller-prefabs
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: thirdpersoncontroller-prefabs
-  m_GUID: 579502ffcc3d1486ea2d1f407272fae5
-  m_SerializeEntries:
-  - m_GUID: 212907312655a4443a025a304442c17c
-    m_Address: thirdpersoncontroller/prefabs/nestedparentcapsule_unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2553cec8fdb3eb643bbe9f2ec880c472
-    m_Address: thirdpersoncontroller/prefabs/playercapsule.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 64dce48905ffd9b4293e595fa6941544
-    m_Address: thirdpersoncontroller/prefabs/playerarmature.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a1a802ecaf6775746bb2a929fb554ad8
-    m_Address: thirdpersoncontroller/prefabs/playerfollowcamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c708a3b79cd542b42bbfedb17e213bc1
-    m_Address: thirdpersoncontroller/prefabs/nestedparentarmature_unpack.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f6d148d888ffbf54b9afe9936dfaec1f
-    m_Address: thirdpersoncontroller/prefabs/maincamera.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: 59955a59b78294fca8fc0236f177ab4f
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 17d7ff8e8dcdf4578aec81e158a55748, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: cd5d1ed7546a0481180d172afd3ef755, type: 2}
-    - {fileID: 11400000, guid: 322893314191848979455c6a63e9c0d3, type: 2}
+    - {fileID: 11400000, guid: 474dee421c1344a93a7dfe7d53ad69bc, type: 2}
+    - {fileID: 11400000, guid: 352f7795dd59e4c31be23c47d899270b, type: 2}
