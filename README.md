@@ -5,7 +5,7 @@ A library that reimplements Unity Addressables' `AssetReference`. `AssetLink` le
 - **Name instead of GUID**: `AssetReference` uses GUIDs to manage assets, which are hard to work with. `AssetLink` uses Addressable names, enabling data-driven load/unload. (You can dynamically map prefabs, icons, and other resources based on monster/item data or packet values.)
 - **GUID reference also supported**: We provide `AssetRef`, which references assets by GUID like `AssetReference`. Resource handle tracking is supported.
 - **Memory leak detection**: `Addressables` can leak memory when load/release pairs are mismatched. We provide an analysis tool to find such mismatches.
-- **Automatic instance management**: References to `Instantiate`d game objects are managed automatically. Release is called automatically, so you don't need to call `ReleaseInstance` manually.
+- **Automatic instance management**: References to `Instantiated` GameObjects are managed automatically. Release is called automatically, so you don't need to call `ReleaseInstance` manually.
 
 ### AssetLink Inspector
 
