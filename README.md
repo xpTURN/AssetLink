@@ -281,8 +281,12 @@ async void DetectAndReportLeaks()
 
 ### Known Issues
 
-Some tests (e.g. AtlasedSprite) may fail when Samples/Tests are installed via the Unity Package Manager.
-To run the tests, clone the repository [xpTURN/AssetLink](https://github.com/xpTURN/AssetLink.git), rename the `Samples~` folder to `Samples`, then run the tests. (If you know why the Package Manager path fails, we’d like to hear from you.)
+#### Running Samples / Tests
+
+Some Samples and Tests run only when Sprite Atlas is available. To run them, follow the steps below.
+
+1. Install **2D Sprite** via `Window > Package Manager`
+2. In `Edit > Project Settings... > Editor`, set **Sprite Atlas > Mode** from `Disabled` to `Sprite Atlas V2 - Enabled`
 
 ## License
 
