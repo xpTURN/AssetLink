@@ -33,11 +33,11 @@ A library that reimplements Unity Addressables' `AssetReference`. `AssetLink` le
 
 ## Requirements
 
-- **Unity**: 2021.3 or later
+- **Unity**: 2023.1 or later
 - **Dependencies**
-  - [Addressables](https://docs.unity3d.com/Packages/com.unity.addressables@2.6) 2.6.x
+  - [Addressables](https://docs.unity3d.com/Packages/com.unity.addressables@2.8) 2.8.1
   - [Editor Coroutines](https://docs.unity3d.com/Packages/com.unity.editorcoroutines@1.0) 1.0.1 (required for the analysis tool)
-  - [UniTask](https://github.com/Cysharp/UniTask) 2.5.x (required when using `AssetLinkSpawner`/`AssetRefSpawner` and Samples/Tests)
+  - [UniTask](https://github.com/Cysharp/UniTask) 2.5.10 (required when using `AssetLinkSpawner`/`AssetRefSpawner` and Samples/Tests)
 
 ## Installing the AssetLink Package
 
