@@ -107,7 +107,8 @@ public class DeclaringLinks : MonoBehaviour
         var atlasInSprite = atlasSpriteLink.LoadAssetAsync();
         atlasInSprite.WaitForCompletion();
         var atlasInSpriteAsset = atlasInSprite.Result;
-        Debug.Log($"Loaded AtlasSprite({atlasInSpriteAsset.GetType().Name}): {atlasInSpriteAsset.name}, {atlasSpriteLink.SubObjectName}");
+        if (atlasInSpriteAsset)
+            Debug.Log($"Loaded AtlasSprite({atlasInSpriteAsset.GetType().Name}): {atlasInSpriteAsset.name}, {atlasSpriteLink.SubObjectName}");
 
         var tex = textureLink.LoadAssetAsync();
         tex.WaitForCompletion();

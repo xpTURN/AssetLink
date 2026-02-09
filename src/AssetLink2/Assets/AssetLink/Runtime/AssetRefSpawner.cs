@@ -122,12 +122,17 @@ namespace xpTURN.AssetLink
                 return null;
             }
 
+#if UNITY_6000_0_OR_NEWER
             var asyncOp = GameObject.InstantiateAsync(prefab, parent, position, rotation);
 
             await asyncOp.ToUniTask();
 
             var result = asyncOp.Result;
             var goObj = result != null && result.Length > 0 ? result[0] : null;
+#else
+            var goObj = GameObject.Instantiate(prefab, position, rotation, parent);
+#endif
+
             if (goObj == null)
             {
                 Debug.LogError($"Failed to Instantiate for AssetRefSpawner {RuntimeKeyString}");
@@ -166,12 +171,16 @@ namespace xpTURN.AssetLink
                 return null;
             }
 
+#if UNITY_6000_0_OR_NEWER
             var asyncOp = GameObject.InstantiateAsync(prefab, new InstantiateParameters { parent = parent, worldSpace = instantiateInWorldSpace });
 
             await asyncOp.ToUniTask();
 
             var result = asyncOp.Result;
             var goObj = result != null && result.Length > 0 ? result[0] : null;
+#else
+            var goObj = GameObject.Instantiate(prefab, parent, instantiateInWorldSpace);
+#endif
             if (goObj == null)
             {
                 Debug.LogError($"Failed to Instantiate for AssetRefSpawner {RuntimeKeyString}");
