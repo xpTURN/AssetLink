@@ -8,6 +8,7 @@ A library that reimplements Unity Addressables' `AssetReference`. `AssetLink` le
 - **Automatic instance management**: References to `Instantiate`d game objects are managed automatically. Release is called automatically, so you don't need to call `ReleaseInstance` manually.
 
 ### AssetLink Inspector
+
 <img src="./docs/assets/assetlink.png" alt="AssetLink Inspector" width="680">
 
 ## Table of Contents
@@ -36,7 +37,7 @@ A library that reimplements Unity Addressables' `AssetReference`. `AssetLink` le
 - **Dependencies**
   - [Addressables](https://docs.unity3d.com/Packages/com.unity.addressables@2.6) 2.6.x
   - [Editor Coroutines](https://docs.unity3d.com/Packages/com.unity.editorcoroutines@1.0) 1.0.1 (required for the analysis tool)
-  - [UniTask](https://github.com/Cysharp/UniTask) 2.5.x (required when using `AssetLinkSpawner`/`AssetRefSpawner`)
+  - [UniTask](https://github.com/Cysharp/UniTask) 2.5.x (required when using `AssetLinkSpawner`/`AssetRefSpawner` and Samples/Tests)
 
 ## Installing the AssetLink Package
 
@@ -260,6 +261,7 @@ async void DetectAndReportLeaks()
 - **Auto Regist Folder Pattern**: Register folder rules with a regex; group name and addressable asset name are then set from subfolder and file name. (Applied on new import or reimport.)
 
 ### AssetLink Settings Inspector
+
 <img src="./docs/assets/assetlinksettings.png" alt="AssetLink Settings" width="680">
 
 ## Addressable Tracker
@@ -274,7 +276,13 @@ async void DetectAndReportLeaks()
 - Tracking is not available after assembly reload in PlayMode.
 
 ### Addressable Tracker Window
+
 <img src="./docs/assets/addressables_tracker.png" alt="Addressable Tracker" width="680">
+
+### Known Issues
+
+Some tests (e.g. AtlasedSprite) may fail when Samples/Tests are installed via the Unity Package Manager.
+To run the tests, clone the repository [xpTURN/AssetLink](https://github.com/xpTURN/AssetLink.git), rename the `Samples~` folder to `Samples`, then run the tests. (If you know why the Package Manager path fails, we’d like to hear from you.)
 
 ## License
 
