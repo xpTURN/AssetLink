@@ -1,3 +1,4 @@
+#if ASSETLINK_UNITASK_INTEGRATION
 #pragma warning disable CS0414
 using System;
 using System.Collections;
@@ -258,3 +259,4 @@ namespace xpTURN.AssetLink.Tests
 #endif
     }
 }
+#endif

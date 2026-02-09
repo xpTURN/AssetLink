@@ -55,6 +55,9 @@ namespace xpTURN.AssetLink.Tests
         {
             Debug.Log("AssetRefSceneTests TearDown");
 
+            yield return null;
+
+#if ASSETLINK_UNITASK_INTEGRATION
             foreach (var link in _loadedSceneRefs)
             {
                 if (link != null && link.IsValid())
@@ -64,6 +67,7 @@ namespace xpTURN.AssetLink.Tests
                 }
             }
             _loadedSceneRefs.Clear();
+#endif
         }
 
 #if ASSETLINK_UNITASK_INTEGRATION

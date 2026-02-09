@@ -71,8 +71,10 @@ public class DeclaringLinks : MonoBehaviour
 
     public AssetRefMaterial materialRef;
 
+#if ASSETLINK_UNITASK_INTEGRATION
     [Header("AssetLinkSpawner")]
     public AssetLinkSpawner assetLinkSpawner;
+#endif 
 
     public AssetLinkScene sceneLink;
     public AssetRefScene sceneRef;
@@ -132,9 +134,11 @@ public class DeclaringLinks : MonoBehaviour
         var matAsset = mat.Result;
         Debug.Log($"Loaded Material({matAsset.GetType().Name}): {matAsset.name}, {materialLink.AssetName}");
 
+#if ASSETLINK_UNITASK_INTEGRATION
         // Spawner
         for (int i = 0; i < 10; ++i)
             assetLinkSpawner.SpawnAsync().Forget();
+#endif
 
         sceneLink.LoadSceneAsync(LoadSceneMode.Additive);
         sceneRef.LoadSceneAsync(LoadSceneMode.Additive);
