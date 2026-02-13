@@ -15,7 +15,7 @@ namespace xpTURN.AssetLink.Editor
     /// <summary>
     /// Editor window for viewing AddressablesTracker diagnostics (tracked handles, unreferenced state, request time, stack trace).
     /// </summary>
-    public class AddressablesTrackeWindow : EditorWindow
+    public class AddressablesTrackerWindow : EditorWindow
     {
         private IReadOnlyDictionary<string, List<AddressablesTracker.TrackedHandleDTO>> _snapshot;
         private Vector2 _scrollPosition;
@@ -35,11 +35,11 @@ namespace xpTURN.AssetLink.Editor
         [MenuItem("Window/AssetLink/Addressables Tracker")]
         public static void Open()
         {
-            var window = GetWindow<AddressablesTrackeWindow>("Addressables Tracker");
+            var window = GetWindow<AddressablesTrackerWindow>("Addressables Tracker");
             window.minSize = new Vector2(400, 300);
         }
 
-        public void OFocus()
+        private void OnFocus()
         {
             _keyFilter = _keyFilterApplied ?? "";
         }

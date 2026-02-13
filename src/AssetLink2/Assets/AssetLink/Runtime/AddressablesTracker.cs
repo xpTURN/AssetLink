@@ -227,7 +227,7 @@ namespace xpTURN.AssetLink
             }
             else
             {
-                Debug.LogError($"AssetOwner {runtimeKey} not found in trackedHandles");
+                Debug.LogError($"AddressablesTracker: Remove: AssetOwnerId {ownerId} not found for key '{runtimeKey}'");
             }
         }
 
@@ -352,7 +352,7 @@ namespace xpTURN.AssetLink
             if (report)
             {
                 if (EnableStackTrace)
-                    Debug.LogError($"AddressablesTracker: Unreferenced AddressableAsset released\nAddressableAsset: '[{trackedHandle.RequestTime:HH:mm:ss}] {assetName}'\nCallStack: {trackedHandle.RequestTrace.ToStringForUnityConsole()}");
+                    Debug.LogError($"AddressablesTracker: Unreferenced AddressableAsset released\nAddressableAsset: '[{trackedHandle.RequestTime:HH:mm:ss}] {assetName}'\nCallStack: {trackedHandle.RequestTrace?.ToStringForUnityConsole()}");
                 else
                     Debug.LogError($"AddressablesTracker: Unreferenced AddressableAsset released\nAddressableAsset: '[{trackedHandle.RequestTime:HH:mm:ss}] {assetName}'");
             }
@@ -372,9 +372,10 @@ namespace xpTURN.AssetLink
         public static void ReleaseUnreferencedHandles(bool report)
         {
             int releasedCount = 0;
+            var keysToRemove = new List<long>();
             foreach (var (name, handles) in trackedHandles)
             {
-                var keysToRemove = new List<long>();
+                keysToRemove.Clear();
                 foreach (var kv in handles)
                 {
                     if (TryReleaseUnreferencedHandle(kv.Value, name, report))
@@ -384,20 +385,24 @@ namespace xpTURN.AssetLink
                 }
 
                 releasedCount += keysToRemove.Count;
-                foreach (var key in keysToRemove)
+                for (int i = 0; i < keysToRemove.Count; i++)
                 {
-                    handles.Remove(key);
+                    handles.Remove(keysToRemove[i]);
                 }
             }
 
-            // Remove empty entries
-            var emptyKeys = trackedHandles.Where(kv => kv.Value.Count == 0).Select(kv => kv.Key).ToArray();
-            foreach (var key in emptyKeys)
+            // Remove empty entries (avoid LINQ to reduce GC)
+            var emptyKeys = new List<string>();
+            foreach (var kv in trackedHandles)
             {
-                trackedHandles.Remove(key);
+                if (kv.Value.Count == 0)
+                    emptyKeys.Add(kv.Key);
+            }
+            for (int i = 0; i < emptyKeys.Count; i++)
+            {
+                trackedHandles.Remove(emptyKeys[i]);
             }
 
-            //
             if (report && releasedCount > 0)
             {
                 Debug.LogError($"AddressablesTracker: Released {releasedCount} unreferenced AddressableAsset(s)");

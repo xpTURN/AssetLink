@@ -87,6 +87,7 @@ public class DeclaringLinks : MonoBehaviour
     [AssetReferenceUILabelRestriction("animals", "characters")]
     public AssetLink linkHavLabels2;
 
+    [ContextMenu("DoStart")]
     public void DoStart()
     {
         Debug.Log($"[AssetLinkSettings] HandlePoolSize: {AssetLinkSettings.Instance.HandlePoolSize}, EnableStackTrace: {AssetLinkSettings.Instance.EnableStackTrace}");

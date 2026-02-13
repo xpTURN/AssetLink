@@ -39,6 +39,9 @@ namespace xpTURN.AssetLink
         [SerializeField]
         string m_SubObjectType = null;
 
+        /// <summary>Cache for composite RuntimeKey when SubObjectName is set; invalidated when m_AssetName/m_SubObjectName change.</summary>
+        string _cachedRuntimeKeyComposite;
+
         long m_OwnerId = 0;
         AsyncOperationHandle m_Operation;
 #if UNITY_EDITOR
@@ -67,9 +70,11 @@ namespace xpTURN.AssetLink
             {
                 if (m_AssetName == null)
                     m_AssetName = string.Empty;
-                if (!string.IsNullOrEmpty(m_SubObjectName))
-                    return string.Format("{0}[{1}]", m_AssetName, m_SubObjectName);
-                return m_AssetName;
+                if (string.IsNullOrEmpty(m_SubObjectName))
+                    return m_AssetName;
+                if (_cachedRuntimeKeyComposite == null)
+                    _cachedRuntimeKeyComposite = string.Format("{0}[{1}]", m_AssetName, m_SubObjectName);
+                return _cachedRuntimeKeyComposite;
             }
         }
 
@@ -224,6 +229,7 @@ namespace xpTURN.AssetLink
             m_AssetName = string.Empty;
             m_SubObjectName = null;
             m_SubObjectType = null;
+            _cachedRuntimeKeyComposite = null;
 
 #if UNITY_EDITOR
             m_EditorAssetChanged = false;
@@ -274,6 +280,7 @@ namespace xpTURN.AssetLink
 
             m_AssetName = assetName;
             m_SubObjectName = subObjectName;
+            _cachedRuntimeKeyComposite = null;
         }
 
         /// <summary>
@@ -483,6 +490,7 @@ namespace xpTURN.AssetLink
                 CachedAsset = null;
                 m_AssetName = string.Empty;
                 m_SubObjectName = null;
+                _cachedRuntimeKeyComposite = null;
                 m_EditorAssetChanged = true;
                 return true;
             }
@@ -490,6 +498,7 @@ namespace xpTURN.AssetLink
             if (CachedAsset != value)
             {
                 m_SubObjectName = null;
+                _cachedRuntimeKeyComposite = null;
                 var path = AssetDatabase.GetAssetOrScenePath(value);
                 if (string.IsNullOrEmpty(path))
                 {
@@ -505,6 +514,7 @@ namespace xpTURN.AssetLink
                 else
                 {
                     m_AssetName = AddressableDatabase.AssetPathToAddressName(path);
+                    _cachedRuntimeKeyComposite = null;
                     Object mainAsset;
                     if (derivedType != null)
                         mainAsset = LocateEditorAssetForTypedAssetLink(value, path, derivedType);
@@ -539,6 +549,7 @@ namespace xpTURN.AssetLink
                 {
                     // For sub-assets, set the sub-object name and return the value as mainAsset
                     m_SubObjectName = value.name;
+                    _cachedRuntimeKeyComposite = null;
                     m_SubObjectType = value.GetType().AssemblyQualifiedName;
                     mainAsset = value;
                 }
@@ -556,6 +567,7 @@ namespace xpTURN.AssetLink
                             {
                                 mainAsset = asset;
                                 m_SubObjectName = value.name;
+                                _cachedRuntimeKeyComposite = null;
                                 m_SubObjectType = value.GetType().AssemblyQualifiedName;
                                 break;
                             }
@@ -581,6 +593,7 @@ namespace xpTURN.AssetLink
             if (value == null)
             {
                 m_SubObjectName = null;
+                _cachedRuntimeKeyComposite = null;
                 m_SubObjectType = null;
                 m_EditorAssetChanged = true;
                 return true;
@@ -609,6 +622,7 @@ namespace xpTURN.AssetLink
                     return false;
                 }
                 m_SubObjectName = spriteName;
+                _cachedRuntimeKeyComposite = null;
                 m_SubObjectType = typeof(Sprite).AssemblyQualifiedName;
                 m_EditorAssetChanged = true;
                 return true;
@@ -621,6 +635,7 @@ namespace xpTURN.AssetLink
                 if (s.name == value.name && s.GetType() == value.GetType())
                 {
                     m_SubObjectName = s.name;
+                    _cachedRuntimeKeyComposite = null;
                     m_SubObjectType = s.GetType().AssemblyQualifiedName;
                     m_EditorAssetChanged = true;
                     return true;

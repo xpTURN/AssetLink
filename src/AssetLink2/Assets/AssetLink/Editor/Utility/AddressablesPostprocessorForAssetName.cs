@@ -23,22 +23,28 @@ namespace xpTURN.AssetLink.Editor
                 return;
             }
 
-            foreach (string importedAssetPath in importedAssets)
+            var regexList = AssetLinkSettings.Instance?.AutoRegistFolderRegex;
+            if (regexList == null || regexList.Count == 0)
             {
-                var mainAssetType = AssetDatabase.GetMainAssetTypeAtPath(importedAssetPath);
-                if (mainAssetType == typeof(DefaultAsset)) // Folder/None asset is not addressable
-                {
-                    continue;
-                }
-
-                var (success, groupName, addressableName) = MatchFolderPattern(importedAssetPath);
-                if (success == false) // Not match folder pattern
-                {
-                    continue;
-                }
-
-                ProcessAssetForAddressables(groupName, addressableName, importedAssetPath);
+                return;
             }
+
+            foreach (string importedAssetPath in importedAssets)
+                {
+                    var mainAssetType = AssetDatabase.GetMainAssetTypeAtPath(importedAssetPath);
+                    if (mainAssetType == typeof(DefaultAsset)) // Folder/None asset is not addressable
+                    {
+                        continue;
+                    }
+
+                    var (success, groupName, addressableName) = MatchFolderPattern(importedAssetPath);
+                    if (success == false) // Not match folder pattern
+                    {
+                        continue;
+                    }
+
+                    ProcessAssetForAddressables(groupName, addressableName, importedAssetPath);
+                }
         }
 
         private static (bool success, string groupName, string addressableName) MatchFolderPattern(string importedAssetPath)
