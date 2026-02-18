@@ -6,8 +6,8 @@ namespace UnityEngine
     {
         public static T GetOrAddComponent<T>(this GameObject goObj) where T : Component
         {
-            var co = goObj.GetComponent<T>();
-            if (co == null)
+            // (Editor) Compared to GetComponent, avoids memory allocation and is slightly faster.
+            if (!goObj.TryGetComponent<T>(out T co))
             {
                 co = goObj.AddComponent<T>();
             }
