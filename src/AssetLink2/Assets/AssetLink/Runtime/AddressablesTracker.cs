@@ -70,7 +70,10 @@ namespace xpTURN.AssetLink
                 if (Type == HANDLE_TYPE.ASSET_OWNER_SPAWNER)
                     return true;
 
-                return AssetOwner.TryGetTarget(out var _);
+                if (!AssetOwner.TryGetTarget(out var owner))
+                    return false;
+
+                return !IsMissing(owner);
             }
 
             internal bool EnableForceRelease()
@@ -80,10 +83,16 @@ namespace xpTURN.AssetLink
                     || Type == HANDLE_TYPE.ASSET_OWNER_SCENE)
                     return false;
 
-                if (!OperationHandle.IsValid() || AssetOwner.TryGetTarget(out _))
+                if (!OperationHandle.IsValid())
                     return false;
 
-                return true;
+                if (!AssetOwner.TryGetTarget(out var owner))
+                    return true;
+
+                if (IsMissing(owner))
+                    return true;
+
+                return false;
             }
 
             internal void OnDestroyedScene(AsyncOperationHandle operationHandle)
@@ -135,6 +144,18 @@ namespace xpTURN.AssetLink
                 IsHandleValid = false;
                 Status = null;
             }
+        }
+
+        /// <summary>
+        /// Returns true if the owner reference is missing (null or destroyed Unity Object).
+        /// </summary>
+        private static bool IsMissing(IAssetOwner owner)
+        {
+            if (owner == null)
+                return true;
+            if (owner is UnityEngine.Object unityObj && unityObj == null)
+                return true;
+            return false;
         }
 
         private static Dictionary<string, SortedDictionary<long, TrackedHandle>> trackedHandles = new();
@@ -283,9 +304,10 @@ namespace xpTURN.AssetLink
             if (trackedHandle.SpawnCount <= 0)
             {
                 trackedHandle.AssetOwner.TryGetTarget(out var assetOwner);
+                bool ownerAlive = !IsMissing(assetOwner);
 
                 // When assetOwner is alive, it holds ownership of OperationHandle. Request release.
-                if (assetOwner != null)
+                if (ownerAlive)
                 {
 #if UNITY_INCLUDE_TESTS
                     Debug.Log($"AddressablesTracker: DecreaseSpawnCount: AssetOwner {key} is released. By AssetOwner");

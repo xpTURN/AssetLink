@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.2] - 2026-02-18
+
+### Changed
+
+- **AddressablesTracker (Runtime)**
+  - **UnityEngine.Object IsMissing check**: Treats `owner` as missing when it is a `UnityEngine.Object` that has been destroyed (`unityObj == null`).
+
+- **AddressablesTrackerWindow (Editor)**
+  - **CaptureSnapshotCoroutine improvements**: Capture snapshot after calling `Resources.UnloadUnusedAssets()` before taking the snapshot.
+
+---
+
 ## [2.0.1] - 2026-02-13
 
 ### Changed
@@ -32,10 +44,10 @@
 
 - All changes from 1.0.0
 - Code refactoring used in AssetLink
-- AssetRef Added
-- AssetLinkSpawner / AssetRefSpawner Added
-- AssetLinkSettings Added
-- AddressableTracker Added
+- AssetRef added
+- AssetLinkSpawner / AssetRefSpawner added
+- AssetLinkSettings added
+- AddressablesTracker added
 
 ### Dependencies
 

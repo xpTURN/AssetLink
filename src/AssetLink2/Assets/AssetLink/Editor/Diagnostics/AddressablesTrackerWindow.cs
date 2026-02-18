@@ -261,14 +261,31 @@ namespace xpTURN.AssetLink.Editor
             _isCapturing = true;
             try
             {
-                // Hierarchy 선택 해제 (Editor UI 업데이트)
+                // Clear Hierarchy selection (Editor UI update)
+                Selection.objects = new UnityEngine.Object[] { };
                 Selection.activeObject = null;
+                Selection.activeGameObject = null;
+                Selection.activeObject = FindAnyObjectByType<GameObject>();
+                Selection.activeGameObject = FindAnyObjectByType<GameObject>();
 
-                // GC 수행
-                GC.Collect(2, GCCollectionMode.Forced, true);
-                yield return new WaitForSeconds(3f);
-                
-                //
+                // Run GC
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                // Run GC
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                // Yield until UnloadUnusedAssets completes (avoids blocking the editor instead of busy-wait)
+                yield return Resources.UnloadUnusedAssets();
+
+                // Run GC
+                GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+                GC.WaitForPendingFinalizers();
+
+                yield return new WaitForSeconds(0.1f);
+
+                // Capture snapshot
                 AddressablesTracker.ReleaseTrackedHandleDTOsToPool(_snapshot);
                 _snapshot = AddressablesTracker.GetTrackedHandlesSnapshotForEditor();
             }
