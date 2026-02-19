@@ -21,6 +21,16 @@ MonoBehaviour:
     m_SerializedLabels:
     - animals
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fb720a048d324d2faa306e5c2523994
+    m_Address: Prefabs/LeakScenario.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ff5788b9308a49cf84d0176337de7a1
+    m_Address: Prefabs/Cat2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 23f2109d9f7d945669a1e705e9e3f1ac
     m_Address: Prefabs/Empty.prefab
     m_ReadOnly: 0
@@ -32,8 +42,33 @@ MonoBehaviour:
     m_SerializedLabels:
     - animals
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8853b2e6a78554e109b605dfd71e937f
+    m_Address: Prefabs/Cat1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90833afdc593446de839619c3a1367f1
+    m_Address: Prefabs/Cat5.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90dbe361ae900451d9c016430e2d29e5
+    m_Address: Prefabs/Cat3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9657794b0eee0427da1707e208bfad8d
     m_Address: Prefabs/DeclaringLinks.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af0f1cc3e60fb4986af18496dd8239c3
+    m_Address: Prefabs/DoTrack.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c443739abddd04e2cb5391fdd3c2af98
+    m_Address: Prefabs/Cat4.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

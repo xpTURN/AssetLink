@@ -10,8 +10,6 @@ public class DoTrackEditor : UnityEditor.Editor
 
         var doTrack = (DoTrack)target;
 
-        EditorGUILayout.Space(4);
-
         if (GUILayout.Button("DoStart - Test"))
         {
             doTrack.SendMessage("DoStart", options: SendMessageOptions.DontRequireReceiver);
@@ -19,19 +17,26 @@ public class DoTrackEditor : UnityEditor.Editor
 
         EditorGUILayout.Space(4);
 
-        if (GUILayout.Button("ReleaseUnreferencedHandles - Test"))
+        if (GUILayout.Button("ReleaseUnreferenced - Test"))
         {
-            doTrack.SendMessage("ReleaseUnreferencedHandlesTest", options: SendMessageOptions.DontRequireReceiver);
+            doTrack.SendMessage("ReleaseUnreferenced", options: SendMessageOptions.DontRequireReceiver);
         }
 
         EditorGUILayout.Space(1);
+
+        if (GUILayout.Button("DetectAndReportLeaks - Test"))
+        {
+            doTrack.SendMessage("DetectAndReportLeaks", options: SendMessageOptions.DontRequireReceiver);
+        }
+
+        EditorGUILayout.Space(4);
 
         if (GUILayout.Button("DoAutoRelease - Test"))
         {
             doTrack.SendMessage("DoAutoRelease", options: SendMessageOptions.DontRequireReceiver);
         }
 
-        EditorGUILayout.Space(1);
+        EditorGUILayout.Space(4);
 
         if (GUILayout.Button("DoUnloadSceneLink - Test"))
         {
@@ -44,5 +49,13 @@ public class DoTrackEditor : UnityEditor.Editor
         {
             doTrack.SendMessage("DoUnloadSceneRef", options: SendMessageOptions.DontRequireReceiver);
         }
+
+        EditorGUILayout.Space(12);
+
+        if (GUILayout.Button("DoLeakScenario - Test"))
+        {
+            doTrack.SendMessage("DoLeakScenario", options: SendMessageOptions.DontRequireReceiver);
+        }
+
     }
 }

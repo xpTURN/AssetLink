@@ -8,8 +8,6 @@ using UnityEngine.AddressableAssets;
 
 using xpTURN.AssetLink;
 using UnityEngine.SceneManagement;
-using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEditor;
 
 #if ASSETLINK_UNITASK_INTEGRATION
 using Cysharp.Threading.Tasks;
@@ -144,6 +142,18 @@ public class DeclaringLinks : MonoBehaviour
 
         sceneLink.LoadSceneAsync(LoadSceneMode.Additive);
         sceneRef.LoadSceneAsync(LoadSceneMode.Additive);
+    }
+
+    public void UnloadSceneByLink()
+    {
+        if (sceneLink.IsValid())
+            sceneLink.UnLoadScene();
+    }
+
+    public void UnloadSceneByRef()
+    {
+        if (sceneRef.IsValid())
+            sceneRef.UnLoadScene();
     }
 
     void OnDestroy()

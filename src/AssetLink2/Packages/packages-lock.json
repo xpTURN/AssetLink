@@ -7,7 +7,7 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
       },
-      "hash": "53e1baac3cde90c46934f82ee1d61802d2bd6651"
+      "hash": "fd8ff1fb700caf062eb5cce364c1d0a85f99ebe6"
     },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.10",

@@ -23,9 +23,10 @@ A library that reimplements Unity Addressables' `AssetReference`. `AssetLink` le
   - [Other](#other)
 - [AssetLink, AssetRef Usage](#assetlink-assetref-usage)
 - [AssetLinkSpawner Usage](#assetlinkspawner-usage)
+- [AssetLinkScene(AssetRefScene) Usage](#assetlinksceneassetrefscene-usage)
 - [Memory Leak Detection](#memory-leak-detection)
 - [AssetLink Settings](#assetlink-settings)
-- [Addressable Tracker](#addressable-tracker)
+- [Addressables Tracker](#addressables-tracker)
 - [License](#license)
 - [Links](#links)
 
@@ -97,6 +98,7 @@ https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
 using UnityEngine;
 
 using Cysharp.Threading.Tasks;
+
 using xpTURN.AssetLink;
 
 public class ExampleSimple : MonoBehaviour
@@ -116,7 +118,8 @@ public class ExampleSimple : MonoBehaviour
 
     async void LoadSprite()
     {
-        spriteLink.SetAssetName("sprites/cats_maine_coon", "cats_maine_coon"); // Call when dynamic mapping is needed (asset name, sprite name)
+        // Call when dynamic mapping is needed (asset name, sprite name)
+        spriteLink.SetAssetName("sprites/cats_maine_coon", "cats_maine_coon");
         spriteCat = await spriteLink.LoadAssetAsync().ToUniTask();
 
         // Dynamic mapping not supported
@@ -140,7 +143,7 @@ public class ExampleSimple : MonoBehaviour
         //     spriteRef.ReleaseAsset();
 
         // ReleaseInstance is called automatically (by DoAutoRelease component when OnDestroy fires)
-        GameObject.Destroy(goCat); 
+        GameObject.Destroy(goCat);
         GameObject.Destroy(goDog);
 
         // For instances created with AssetReference.InstantiateAsync,
@@ -148,6 +151,8 @@ public class ExampleSimple : MonoBehaviour
     }
 }
 ```
+
+- **Note:** In the example above, the `ReleaseAsset` call is intentionally omitted for the commented-out `spriteRef`. In real code you must call `ReleaseAsset` where appropriate.
 
 ## AssetLinkSpawner Usage
 
@@ -157,19 +162,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Cysharp.Threading.Tasks;
+
 using xpTURN.AssetLink;
 
 public class ExampleSpawner : MonoBehaviour
 {
     public AssetLinkSpawner prefabSpawner;
 
-    private List<GameObject> goCats = new ();
+    private List<GameObject> goCats = new();
 
     async void Start()
     {
         for (int i = 0; i < 100; ++i)
         {
-            var goCat = await prefabSpawner.SpawnAsync().ToUniTask();
+            var goCat = await prefabSpawner.SpawnAsync();
             goCat.name = $"Cat{i:d3}";
 
             goCats.Add(goCat);
@@ -178,20 +184,58 @@ public class ExampleSpawner : MonoBehaviour
 
     void OnDestroy()
     {
-        // Instances created with InstantiateAsync are released automatically when destroyed; no need to manage prefabLink/prefabRef manually
-        foreach(var goCat in goCats)
+        // Instances created with SpawnAsync(InstantiateAsync) are released automatically when destroyed; no need to manage the prefab handle or call ReleaseInstance manually
+        foreach (var goCat in goCats)
         {
             // ReleaseInstance is called internally
             // Handled by DoAutoRelease component when OnDestroy fires
-            GameObject.Destroy(goCat); 
+            GameObject.Destroy(goCat);
         }
     }
 }
 ```
 
+- **Note:** Instances created with SpawnAsync(InstantiateAsync) are released automatically when destroyed; no need to manage the prefab handle or call ReleaseInstance manually.
+
+## AssetLinkScene(AssetRefScene) Usage
+
+Use `AssetLinkScene` or `AssetRefScene` to load Addressable scenes. Call `UnLoadScene()` when the scene is no longer needed (e.g. in `OnDestroy`).
+
+```csharp
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+using Cysharp.Threading.Tasks;
+
+using xpTURN.AssetLink;
+
+public class ExampleScene : MonoBehaviour
+{
+    [Header("AssetLinkScene (name-based)")]
+    public AssetLinkScene sceneLink;
+
+    async void Start()
+    {
+        // Load scene additively (optional: await handle.ToUniTask() for completion)
+        sceneLink.LoadSceneAsync(LoadSceneMode.Additive, activateOnLoad: true, priority: 100);
+    }
+
+    void OnDestroy()
+    {
+        // Unload scene (omission causes memory leak)
+        if (sceneLink.IsValid())
+            sceneLink.UnLoadScene();
+    }
+}
+```
+
+- **Note:** You must call `UnLoadScene()` when a scene loaded with `LoadSceneMode.Additive` is no longer needed.
+- **Note:** When loading with `LoadSceneMode.Single`, the previous scene is unloaded automatically; you do not need to call `UnLoadScene()` manually.
+
 ## Memory Leak Detection
 
 ```csharp
+using System;
 using UnityEngine;
 
 using Cysharp.Threading.Tasks;
@@ -199,53 +243,93 @@ using xpTURN.AssetLink;
 
 // Intentionally load without release (creates leak scenario).
 // In real game code, always call Release (ReleaseAsset) for loaded assets.
-async void CreateLeakScenario()
+public class LeakScenario : MonoBehaviour
 {
-    var ObjectLink_001 = new AssetLink();
-    ObjectLink_001.SetAssetName("Prefabs/Cat1.prefab");
-    await ObjectLink_001.LoadAssetAsync<GameObject>().ToUniTask();
+    AssetLink ObjectLink_001 = new AssetLink();
+    AssetLink ObjectLink_002 = new AssetLink();
+    AssetLink ObjectLink_003 = new AssetLink();
+    AssetLink ObjectLink_004 = new AssetLink();
+    AssetLink ObjectLink_005 = new AssetLink();
 
-    var ObjectLink_002 = new AssetLink();
-    ObjectLink_002.SetAssetName("Prefabs/Cat2.prefab");
-    await ObjectLink_002.LoadAssetAsync<GameObject>().ToUniTask();
+    async void Start()
+    {
+        ObjectLink_001.SetAssetName("Prefabs/Cat1.prefab");
+        await ObjectLink_001.LoadAssetAsync<GameObject>().ToUniTask();
 
-    var ObjectLink_003 = new AssetLink();
-    ObjectLink_003.SetAssetName("Prefabs/Cat3.prefab");
-    await ObjectLink_003.LoadAssetAsync<GameObject>().ToUniTask();
+        ObjectLink_002.SetAssetName("Prefabs/Cat2.prefab");
+        await ObjectLink_002.LoadAssetAsync<GameObject>().ToUniTask();
 
-    var ObjectLink_004 = new AssetLink();
-    ObjectLink_004.SetAssetName("Prefabs/Cat4.prefab");
-    await ObjectLink_004.LoadAssetAsync<GameObject>().ToUniTask();
+        ObjectLink_003.SetAssetName("Prefabs/Cat3.prefab");
+        await ObjectLink_003.LoadAssetAsync<GameObject>().ToUniTask();
 
-    var ObjectLink_005 = new AssetLink();
-    ObjectLink_005.SetAssetName("Prefabs/Cat5.prefab");
-    await ObjectLink_005.LoadAssetAsync<GameObject>().ToUniTask();
+        ObjectLink_004.SetAssetName("Prefabs/Cat4.prefab");
+        await ObjectLink_004.LoadAssetAsync<GameObject>().ToUniTask();
 
-    // Link objects removed without Release
-    ObjectLink_001 = null;
-    ObjectLink_002 = null;
-    ObjectLink_003 = null;
-    ObjectLink_004 = null;
-    ObjectLink_005 = null;
-}
+        ObjectLink_005.SetAssetName("Prefabs/Cat5.prefab");
+        await ObjectLink_005.LoadAssetAsync<GameObject>().ToUniTask();
+    }
 
-// Call after running the scenario above: detect and report unreleased handles
-async void DetectAndReportLeaks()
-{
-    await UniTask.DelayFrame(2);
-    GC.Collect();
+    void OnDestroy()
+    {
+        // Release loaded assets; ReleaseAsset intentionally omitted for testing
+        // if (ObjectLink_001.IsValid())
+        //     ObjectLink_001.ReleaseAsset();
+        // if (ObjectLink_002.IsValid())
+        //     ObjectLink_002.ReleaseAsset();
+        // if (ObjectLink_003.IsValid())
+        //     ObjectLink_003.ReleaseAsset();
+        // if (ObjectLink_004.IsValid())
+        //     ObjectLink_004.ReleaseAsset();
+        // if (ObjectLink_005.IsValid())
+        //     ObjectLink_005.ReleaseAsset();
 
-    await UniTask.WaitForSeconds(1);
-
-    // Log Link/Ref that leaked due to missing Release
-    // Use error log to fix code (add ReleaseAsset() calls)
-    AddressablesTracker.ReportUnreferencedHandles(true);
-
-    // Log Link/Ref that leaked & force ReleaseAsset (fallback)
-    // But not release the handles that are assets of scene links. (Too many dangerous)
-    AddressablesTracker.ReleaseUnreferencedHandles(true);
+        // Link objects removed without Release
+        ObjectLink_001 = null;
+        ObjectLink_002 = null;
+        ObjectLink_003 = null;
+        ObjectLink_004 = null;
+        ObjectLink_005 = null;
+    }
 }
 ```
+
+```csharp
+using System;
+using UnityEngine;
+
+using Cysharp.Threading.Tasks;
+using xpTURN.AssetLink;
+
+public class DoTrack : MonoBehaviour
+{
+    async void DetectAndReportLeaks()
+    {
+        // Run GC
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
+        // Unload unused assets
+        await Resources.UnloadUnusedAssets().ToUniTask();
+        await UniTask.DelayFrame(2);
+
+        // Run GC
+        GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+        GC.WaitForPendingFinalizers();
+
+        await UniTask.WaitForSeconds(0.1f);
+
+        // Log Link/Ref that leaked due to missing Release
+        // Use error log to fix code (add ReleaseAsset() calls)
+        AddressablesTracker.ReportUnreferencedHandles();
+
+        // Log Link/Ref that leaked & force ReleaseAsset (fallback)
+        // But not release the handles that are assets of scene links. (Too dangerous…)
+        AddressablesTracker.ReleaseUnreferencedHandles(true);
+    }
+}
+```
+
+- **Note:** `ReleaseUnreferencedHandles` is a last resort. Use `ReportUnreferencedHandles` or the **Addressables Tracker** window to find leak entries, then fix your code to call `ReleaseAsset` where appropriate.
 
 ## AssetLink Settings
 
@@ -264,7 +348,7 @@ async void DetectAndReportLeaks()
 
 <img src="./docs/assets/assetlinksettings.png" alt="AssetLink Settings" width="680">
 
-## Addressable Tracker
+## Addressables Tracker
 
 1. Enter PlayMode
 2. Open Window > AssetLink > Addressables Tracker
@@ -275,9 +359,9 @@ async void DetectAndReportLeaks()
 - Only assets loaded via AssetLink/AssetRef are tracked. (Assets loaded with `AssetReference` are not tracked.)
 - Tracking is not available after assembly reload in PlayMode.
 
-### Addressable Tracker Window
+### Addressables Tracker Window
 
-<img src="./docs/assets/addressables_tracker.png" alt="Addressable Tracker" width="680">
+<img src="./docs/assets/addressables_tracker.png" alt="Addressables Tracker" width="680">
 
 ### Known Issues
 

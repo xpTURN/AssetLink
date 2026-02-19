@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.2] - 2026-02-18
+## [2.0.2] - 2026-02-19
 
 ### Changed
 
@@ -8,7 +8,10 @@
   - **UnityEngine.Object IsMissing check**: Treats `owner` as missing when it is a `UnityEngine.Object` that has been destroyed (`unityObj == null`).
 
 - **AddressablesTrackerWindow (Editor)**
-  - **CaptureSnapshotCoroutine improvements**: Capture snapshot after calling `Resources.UnloadUnusedAssets()` before taking the snapshot.
+  - **CaptureSnapshotCoroutine improvements**: Call `Resources.UnloadUnusedAssets()` before capturing the snapshot (avoids blocking the editor).
+
+- **README**: Added AssetLinkScene(AssetRefScene) Usage section, Memory Leak Detection (LeakScenario/DoTrack) examples, and notes.
+- **Samples**: Added ExampleSimple.cs, ExampleSpawner.cs, LeakScenario.cs; updated DoTrack (DetectAndReportLeaks, DoLeakScenario, scene unload), DeclaringLinks, DoTrackEditor.
 
 ---
 
