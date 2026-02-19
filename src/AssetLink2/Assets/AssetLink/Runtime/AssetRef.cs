@@ -167,6 +167,12 @@ namespace xpTURN.AssetLink
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
         {
+            OnAfterDeserializeImpl();
+        }
+
+        /// <summary>Invoked after deserialization. Override in derived classes and call base to run base logic (e.g. OwnerId init).</summary>
+        protected virtual void OnAfterDeserializeImpl()
+        {
             if (m_OwnerId == 0)
                 m_OwnerId = GenerateInstanceId.Next();
         }

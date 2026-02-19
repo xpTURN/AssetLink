@@ -79,8 +79,7 @@ namespace xpTURN.AssetLink
         {
             if (goObj == null)
             {
-                Debug.LogError($"DoAutoRelease.Setup: operationHandle.Result is not a GameObject");
-                return;
+                throw new ArgumentNullException(nameof(goObj), "goObj is null");
             }
 
             var doAuto = goObj.GetOrAddComponent<DoAutoRelease>();

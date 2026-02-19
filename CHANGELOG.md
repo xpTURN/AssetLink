@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.0.4] - 2026-02-19
+
+### Changed
+
+- **AssetLinkSpawner / AssetRefSpawner**: Logic improved. Serialize first load so only one LoadAssetAsync runs; concurrent callers reuse and await the same OperationHandle.
+- **SpawnAsync**: Added overloads that take a `count` argument to spawn multiple instances at once (`SpawnAsync(int count, ...)` → `GameObject[]`).
+- **Tests**: Added AssetLinkSpawnerTests, AssetRefSpawnerTests test cases.
+
+---
+
 ## [2.0.3] - 2026-02-19
 
 ### Changed
