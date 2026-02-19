@@ -5,9 +5,9 @@
   "description": "A lightweight wrapper library for Unity Addressables system. It provides simple and safe handling of asset loading, prefab instantiation, and scene management. This is an Addressable asset reference type that can be used instead of AssetReference provided by Unity Addressables.",
   "unity": "2021.3",
   "unityRelease": "45f1",
-  "documentationUrl": "https://github.com/xpTURN/AssetLink/README.md",
-  "changelogUrl": "https://github.com/xpTURN/AssetLink/CHANGELOG.md",
-  "licensesUrl": "https://github.com/xpTURN/AssetLink/LICENSE.md",
+  "documentationUrl": "https://github.com/xpTURN/AssetLink/blob/main/README.md",
+  "changelogUrl": "https://github.com/xpTURN/AssetLink/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/xpTURN/AssetLink/blob/main/LICENSE.md",
   "dependencies": {
     "com.unity.addressables": "2.8.1",
     "com.unity.editorcoroutines": "1.0.1"
