@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.5] - 2026-02-21
+
+### Changed
+
+- **Samples / Tests**: Folder and package setup changed.
+
 ## [2.0.4] - 2026-02-19
 
 ### Changed
